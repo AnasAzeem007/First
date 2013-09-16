@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>navigator.network.connection.type Example</title>
-
-    <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+    <title>Cordova Online Example</title>
+ 
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-
-    function checkConnection() {
-      alert("inside");
-        var networkState = navigator.network.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.NONE]     = 'No network connection';
-
-        alert('Connection type: ' + states[networkState]);
-    }
-    // Wait for PhoneGap to load
-    // 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+ 
+    // Call onDeviceReady when Cordova is loaded.
     //
-    <!--function onDeviceReady() {
-        checkConnection();
-    }-->
-    window.onload = function(){
-      checkConnection();
+    // At this point, the document has loaded but cordova-x.x.x.js has not.
+    // When Cordova is loaded and talking with the native device,
+    // it will call the event `deviceready`.
+    //
+    function onLoad() {
+        document.addEventListener("online", onOnline, false);
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("deviceready", onDeviceReady, false);
     }
-
-
+ 
+    // Cordova is loaded and it is now safe to make calls Cordova methods
+    //
+    function onDeviceReady() {
+        console.log("onDeviceReady");
+    }
+ 
+    // Handle the online event
+    //
+    function onOnline() {
+        console.log("onOnline");
+    }
+ 
+    function onOffline() {
+        console.log("onOffline");
+    }
+        
     </script>
   </head>
-  <body>
-    <p>A dialog box will report the network state.</p>
+  <body onload="onLoad()">
   </body>
 </html>
