@@ -10,6 +10,7 @@
     <description>
         A simple RSS Viewer.
     </description>
+    <feature name="http://api.phonegap.com/1.0/network"/>
 
     <author href="http://www.betaout.com" email="anas@socialcrawler.in">
        Betaout.com
